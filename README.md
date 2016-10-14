@@ -6,15 +6,15 @@ This library returns [Bluebird](https://github.com/petkaantonov/bluebird/)
 promises which are Promises/A+ compliant.
 
 ```
-toPromise(<pullStream>) -> Promise(<value>);
-toPromise(<pullStream>, 0) -> Promise(null);
-toPromise(<pullStream>, 1) -> Promise(<value>);
-toPromise(<pullStream>, <expected>) -> Promise(Array <values>);
-toPromise(<pullStream>, null) -> Promise(Array <values>);
+toPromise(<pullStream>)				-> Promise(<value>);
+toPromise(<pullStream>, 0)			-> Promise(null);
+toPromise(<pullStream>, 1)			-> Promise(<value>);
+toPromise(<pullStream>, <expected>)	-> Promise(Array <values>);
+toPromise(<pullStream>, null)		-> Promise(Array <values>);
 ```
 
 `expected` being the number of values you expect, defaulting to `1`. Any other
-number will result in an error. Passing `null` disables the check and allow
+number will result in an error. Passing `null` disables the check and allows
 any number of values.
 
 ```js
