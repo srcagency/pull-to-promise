@@ -4,12 +4,15 @@ pullToPromise.Promise = require('bluebird');
 
 module.exports = pullToPromise;
 
-function pullToPromise( ps, expected ){
+function pullToPromise( ps, expect ){
 	var source = ps.source || ps;
-	var any = expected === null;
-	var expected = typeof expected === 'number' || any ? expected : 1;
-	var count = 0;
-	var data = expected > 1 || any ? [] : undefined;
+
+	var specific = typeof expect === 'number';
+	var any = expect === true;
+	var expected = specific ? expect : (expect === false ? 0 : 1);
+	var received = 0;
+
+	var data = any || specific ? [] : undefined;
 
 	return new pullToPromise.Promise(function( rslv, rjct ){
 		return read();
@@ -20,16 +23,16 @@ function pullToPromise( ps, expected ){
 					if (end !== true)
 						return rjct(end);
 
-					if (!any && count < expected)
-						return rjct(new Error('pull-to-promise ended after '+count+' values expecting '+expected));
+					if (!any && received < expected)
+						return rjct(new Error('pull-to-promise ended after '+received+' values expecting '+expected));
 
 					return rslv(data);
 				}
 
-				count++;
+				received++;
 
-				if (!any && count > expected)
-					return rjct(new Error('pull-to-promise received '+count+' values expecting '+expected));
+				if (!any && received > expected)
+					return rjct(new Error('pull-to-promise received '+received+' values expecting '+expected));
 
 				if (any || expected > 1) {
 					data.push(chunk);

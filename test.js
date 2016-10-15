@@ -17,26 +17,26 @@ test('A single value', function( t ){
 test('No value', function( t ){
 	t.plan(1);
 
-	toPromise(pull.values([]), 0)
+	toPromise(pull.values([]), false)
 		.then(function( v ){
-			t.equal(v, null);
+			t.equal(v, undefined);
 		});
 });
 
 test('Any number of values', function( t ){
 	t.plan(3);
 
-	toPromise(pull.values([]), null)
+	toPromise(pull.values([]), true)
 		.then(function( v ){
 			t.deepEqual(v, []);
 		});
 
-	toPromise(pull.values([ 1 ]), null)
+	toPromise(pull.values([ 1 ]), true)
 		.then(function( v ){
 			t.deepEqual(v, [ 1 ]);
 		});
 
-	toPromise(pull.values([ 1, 2 ]), null)
+	toPromise(pull.values([ 1, 2 ]), true)
 		.then(function( v ){
 			t.deepEqual(v, [ 1, 2 ]);
 		});
@@ -47,7 +47,7 @@ test('Specific number of values', function( t ){
 
 	toPromise(pull.values([]), 0)
 		.then(function( v ){
-			t.equal(v, null);
+			t.deepEqual(v, []);
 		});
 
 	toPromise(pull.values([ 1 ]), 1)
