@@ -7,7 +7,7 @@ promises which are Promises/A+ compliant.
 
 ```
 toPromise(<pullStream>)				-> Promise(<value>);
-toPromise(<pullStream>, 0)			-> Promise(null);
+toPromise(<pullStream>, 0)			-> Promise();
 toPromise(<pullStream>, 1)			-> Promise(<value>);
 toPromise(<pullStream>, <expected>)	-> Promise(Array <values>);
 toPromise(<pullStream>, null)		-> Promise(Array <values>);

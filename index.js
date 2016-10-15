@@ -9,7 +9,7 @@ function pullToPromise( ps, expected ){
 	var any = expected === null;
 	var expected = typeof expected === 'number' || any ? expected : 1;
 	var count = 0;
-	var data = expected > 1 || any ? [] : null;
+	var data = expected > 1 || any ? [] : undefined;
 
 	return new pullToPromise.Promise(function( rslv, rjct ){
 		return read();
