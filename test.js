@@ -62,7 +62,12 @@ test('Specific number of values', function( t ){
 });
 
 test('Unexpected number of values', function( t ){
-	t.plan(7);
+	t.plan(8);
+
+	toPromise(pull.values([ 1 ]), false)
+		.catch(function( err ){
+			t.equal(err.toString(), 'Error: pull-to-promise received 1 values expecting 0');
+		});
 
 	toPromise(pull.values([]))
 		.catch(function( err ){
