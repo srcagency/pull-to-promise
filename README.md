@@ -36,7 +36,7 @@ var toPromise = require('pull-to-promise');
 toPromise(pull(
 	pull.values([ 'first', 'second', 'third' ]),
 	pull.take(2)
-), null)
+), true)
 	.then(console.log);	// [ "first", "second" ]
 ```
 
