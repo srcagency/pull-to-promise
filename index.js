@@ -4,6 +4,9 @@ pullToPromise.Promise = require('bluebird');
 
 module.exports = pullToPromise;
 
+pullToPromise.any = any;
+pullToPromise.none = none;
+
 function pullToPromise( ps, expect ){
 	var source = ps.source || ps;
 
@@ -44,4 +47,12 @@ function pullToPromise( ps, expect ){
 			});
 		}
 	});
+}
+
+function any( ps ){
+	return pullToPromise(ps, true);
+}
+
+function none( ps ){
+	return pullToPromise(ps, false);
 }

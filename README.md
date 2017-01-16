@@ -30,13 +30,24 @@ toPromise(pull(
 ```
 
 ```js
-var pull = require('pull-stream');
-var toPromise = require('pull-to-promise');
-
 toPromise(pull(
 	pull.values([ 'first', 'second', 'third' ]),
 	pull.take(2)
 ), true)
+	.then(console.log);	// [ "first", "second" ]
+```
+
+A few shortcuts exists:
+
+```js
+toPromise.any		// toPromise(ps, true)
+toPromise.none		// toPromise(ps, false)
+
+pull(
+	pull.values([ 'first', 'second', 'third' ]),
+	pull.take(2),
+	toPromise.any
+))
 	.then(console.log);	// [ "first", "second" ]
 ```
 

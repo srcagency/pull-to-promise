@@ -104,3 +104,28 @@ test('Unexpected number of values', function( t ){
 			t.equal(err.toString(), 'Error: pull-to-promise received 3 values expecting 2');
 		});
 });
+
+test('Shortcuts', function( t ){
+	t.plan(3);
+
+	pull(
+		pull.values([ 1 ]),
+		toPromise
+	).then(function( v ){
+		t.equal(v, 1);
+	});
+
+	pull(
+		pull.values([ 1, 2, 3 ]),
+		toPromise.any
+	).then(function( v ){
+		t.deepEqual(v, [ 1, 2, 3 ]);
+	});
+
+	pull(
+		pull.values([]),
+		toPromise.none
+	).then(function( v ){
+		t.equal(v, undefined);
+	});
+});
