@@ -105,6 +105,27 @@ test('Unexpected number of values', function( t ){
 		});
 });
 
+test('One or no values (binary mode)', function( t ){
+	t.plan(3);
+
+	var binary = toPromise.binary;
+
+	binary(pull.values([ 1 ]))
+		.then(function( v ){
+			t.equal(v, 1);
+		});
+
+	binary(pull.values([]))
+		.then(function( v ){
+			t.equal(v, undefined);
+		});
+
+	binary(pull.values([ 1, 2 ]))
+		.catch(function( err ){
+			t.equal(err.toString(), 'Error: pull-to-promise received 2 values expecting one or zero');
+		});
+});
+
 test('Shortcuts', function( t ){
 	t.plan(3);
 

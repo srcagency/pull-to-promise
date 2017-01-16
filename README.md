@@ -12,6 +12,7 @@ toPromise(stream)				-> Promise(<value>);
 toPromise(stream, false)		-> Promise();
 toPromise(stream, n)			-> Promise(Array(<value>, ..n));
 toPromise(stream, true)			-> Promise(Array <values>);
+toPromise.binary(stream)		-> Promise(<value | undefined>);
 ```
 
 `expected` being `false` for no value, `true` for any number of values or an
@@ -42,6 +43,7 @@ A few shortcuts exists:
 ```js
 toPromise.any		// toPromise(ps, true)
 toPromise.none		// toPromise(ps, false)
+toPromise.binary	// toPromise(ps, true).then(throwIfMoreThanOne).get(0)
 
 pull(
 	pull.values([ 'first', 'second', 'third' ]),

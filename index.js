@@ -4,6 +4,7 @@ pullToPromise.Promise = require('bluebird');
 
 module.exports = pullToPromise;
 
+pullToPromise.binary = binary;
 pullToPromise.any = any;
 pullToPromise.none = none;
 
@@ -55,4 +56,16 @@ function any( ps ){
 
 function none( ps ){
 	return pullToPromise(ps, false);
+}
+
+function binary( ps ){
+	return pullToPromise(ps, true)
+		.then(toBinary);
+}
+
+function toBinary( r ){
+	if (r.length > 1)
+		throw new Error('pull-to-promise received '+r.length+' values expecting one or zero');
+
+	return r[0];
 }
