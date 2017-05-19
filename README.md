@@ -2,9 +2,6 @@
 
 Convert a pull stream into a promise.
 
-This library returns [Bluebird](https://github.com/petkaantonov/bluebird/)
-promises which are Promises/A+ compliant.
-
 ```
 toPromise(stream[, expected])	-> Promise(<value>);
 
@@ -53,7 +50,8 @@ pull(
 	.then(console.log);	// [ "first", "second" ]
 ```
 
-You may inject your own Promise library if you wish:
+You may inject your own Promise library if you wish, otherwise the library
+will default to the `Promise` global.
 
 ```js
 var toPromise = require('pull-to-promise');

@@ -1,6 +1,7 @@
 'use strict';
 
-pullToPromise.Promise = require('bluebird');
+if (typeof Promise !== 'undefined')
+	pullToPromise.Promise = Promise;
 
 module.exports = pullToPromise;
 
