@@ -1,7 +1,7 @@
 {
 	"name": "pull-to-promise",
 	"description": "Convert a pull-stream to a promise (one or multiple values)",
-	"version": "0.0.3",
+	"version": "1.0.0",
 	"repository": "srcagency/pull-to-promise",
 	"scripts": {
 		"test": "node test"
