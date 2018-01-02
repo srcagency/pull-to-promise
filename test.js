@@ -150,3 +150,49 @@ test('Shortcuts', function( t ){
 		t.equal(v, undefined);
 	});
 });
+
+test('Pull-stream conformance', function( t ){
+	t.plan(4);
+
+	var a = false;
+	toPromise(function(end, cb){
+		if (a)
+			return cb(true);
+		a = true;
+		return cb(undefined, 'a');
+	})
+		.then(function( v ){
+			t.equal(v, 'a');
+		});
+
+	var b = false;
+	toPromise(function(end, cb){
+		if (b)
+			return cb(true);
+		b = true;
+		return cb(null, 'b');
+	})
+		.then(function( v ){
+			t.equal(v, 'b');
+		});
+
+	var c = false;
+	toPromise(function(end, cb){
+		if (c)
+			return cb(true);
+		c = true;
+		return cb(null, 'c');
+	})
+		.then(function( v ){
+			t.equal(v, 'c');
+		});
+
+	var error = new Error('Test');
+
+	pull(
+		pull.error(error),
+		toPromise
+	).catch(function( e ){
+		t.equal(e, error);
+	});
+});

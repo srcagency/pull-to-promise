@@ -24,7 +24,7 @@ function pullToPromise( ps, expect ){
 
 		function read(){
 			return source(null, function( end, chunk ){
-				if (end !== null) {
+				if (end) {
 					if (end !== true)
 						return rjct(end);
 
