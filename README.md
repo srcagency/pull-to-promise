@@ -35,7 +35,7 @@ toPromise(pull(
 	.then(console.log);	// [ "first", "second" ]
 ```
 
-A few shortcuts exists:
+A few shortcuts exist:
 
 ```js
 toPromise.any		// toPromise(ps, true)
